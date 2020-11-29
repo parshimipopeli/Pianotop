@@ -42,8 +42,8 @@ class RegisterType extends AbstractType
                 'required' => true,
                 'first_options' => [
                     'label' => "Votre mot de passe" ],
-                    'second_options' => [
-                        'label' => 'Confirmez votre mot de passe']
+                'second_options' => [
+                    'label' => 'Confirmez votre mot de passe']
                     
                 
             ])

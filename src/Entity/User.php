@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -28,19 +29,30 @@ class User implements UserInterface
      */
     private $roles = [];
 
-    /**
+    /** 
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min=8, max=20,
+     * minMessage="Votre mot de passe doit avoir au minimum de 8 caractères!",
+     * maxMessage=" Votre mot de passe ne doit pas avoir plus de 20 caractères!")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être vide")
+     * @Assert\Length(min=3, max=20,
+     * minMessage="Votre prénom doit avoir au moins 3 caractères",
+     * maxMessage="Votre prénom ne peut pas avoir plus de 20 caractéres")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être vide")
+     * @Assert\Length(min=3, max=20,
+     * minMessage="Votre prénom doit avoir au moins 3 caractères",
+     * maxMessage="Votre prénom ne peut pas avoir plus de 20 caractéres")
      */
     private $lastname;
 
