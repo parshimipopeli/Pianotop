@@ -2,12 +2,20 @@
 {% block title "Mon compte" %}
 {% block body %}
 
-<h1 class="text-center">Mon compte</h1>
+	<div class="container">
+		<h1 class="text-center">
+			Mon compte
+		</h1>
 
-<h3>Bonjour {{ app.user.firstname }}</h3>
-<hr>
-<a href="{{ path('app_account_password') }}" class="text-decoration-none text-dark">
-	Modifier  mon mot de passe
-</a>
+		<h3 class="ml-5">
+			Bonjour
+			{{ app.user.firstname }}
+		</h3>
+		<hr>
+		<a href="{{ path('app_account_password') }}" class="text-decoration-none text-dark ml-5">
+			Modifier  mon mot de passe
+		</a>
+	</div>
+
 
 {% endblock %}
