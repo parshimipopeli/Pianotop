@@ -21,8 +21,8 @@
 	<body>
 		{% include "layouts/partials/_nav.html.twig" %}
 
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		{% if block('carousel') is defined %}
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			{% if block('carousel') is defined %}
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -103,21 +103,15 @@
 			</div>
 		{% endif %}
 
-<div class="{% if block('carousel') is not defined %}mt-5 pt-5{% endif %}">
+		<div class="mt-5 {% if block('carousel') is not defined %}mt-5 pt-5{% endif %}"> 
+			{% block body %}{% endblock %}
+		</div>
 
+			<hr>
 
-
-
-
-		{% block body %}
-		{% endblock %}
-</div>
-
-		<hr>
-
-		{{ include('layouts/partials/_footer.html.twig') }}
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
-</html>
+			{{ include('layouts/partials/_footer.html.twig') }}
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>

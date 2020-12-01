@@ -2,12 +2,16 @@
 
 {% block body %}
 
+
 	<div class="col-md-6 mx-auto">
-		<h1 class="text-center ">
+		<h1 class="text-center mt-5">
 			Créer un compte!
 		</h1>
+		<div class="alert-info text-center">
+			{{ infos }}
+		</div>
 		{{ form_start(form) }}
-		<div class="row">
+		<div class="row mt-5">
 			<div class="col-md-6">
 				{{ form_row(form.firstname) }}
 			</div>
@@ -15,6 +19,7 @@
 				{{ form_row(form.lastname) }}
 			</div>
 		</div>
+
 		{{ form_row(form.email) }}
 		{{ form_row(form.password) }}
 		{{ form_row(form.submit) }}

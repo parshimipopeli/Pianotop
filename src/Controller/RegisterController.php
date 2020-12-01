@@ -18,6 +18,8 @@ class RegisterController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder): Response
     {
+         $infos = null;
+          
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
@@ -33,12 +35,17 @@ class RegisterController extends AbstractController
 
             $em->persist($user);
             $em->flush();
+
+            $infos = "Votre compte à bien été créé.!";
+        } else {
+            $infos = "Une érreur est survenu, veuiller recommencer la créations de votre compte!!";
         }
 
 
 
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'infos' => $infos
         ]);
     }
 }
