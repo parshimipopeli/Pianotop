@@ -24,4 +24,20 @@ class ProductController extends AbstractController
         ]
         );
     }
+
+    /**
+     * @Route("/produit/{id}", name="product_show")
+     */
+    public function show(Product $produit): Response
+    {
+
+        if (!$produit) {
+            return $this->redirectToRoute('products');
+        }
+
+        return $this->render('product/show.html.twig', [
+            'product' => $produit
+        ]);
+        
+    }
 }
