@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,33 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    /**
+     * requette qui me permet de rrécupérer les produits en fonction de la recherche de l'utilisateur
+     * @return Product[]
+     */
+
+    public function findWithSearch(Search $search)
+    {
+        $query = $this
+        ->createQueryBuilder('p')
+        ->select('c', 'p')
+        ->join('p.category', 'c');
+
+        if (!empty($search->categorys)) {
+            $query = $query
+            ->andWhere('c.id IN (:categorys)')
+            ->setParameter('categorys', $search->categorys);
+
+        }
+
+        if (!empty($search->string)) {
+            $query = $query
+            ->andWhere('p.name LIKE :string')
+            ->setParameter('string', "%{$search->string}%");
+        }
+
+        return $query->getQuery()->getResult();
+    }
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

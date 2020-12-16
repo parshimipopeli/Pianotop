@@ -2,38 +2,49 @@
 
 {% block title "Nos produits" %}
 {% block body %}
-	<h1 class="text-center">
-		Nos produits
-	</h1>
-
 	<div class="container-fluid">
-		<div class="row mt-5">
-			{% for product in products%}
-				<div class="col-md-3">
-					<div class="product-item text-center mt-5 shadow-xl">
-						<a href="{{ path('product_show', {id: product.id}) }}">
+		<div class="row">
+			<div class="col-md-2">
+				
+				{{ form(form) }}
+				</div>
 
-							<img src="/images/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" height="50%" width="50%">
-						</a>
+				<div class="col-md-10">
+					<h3 class="text-center">
+						Nos produits
+					</h3>
 
-							<h5 class="text-center text-capitalize">
-								{{ product.name }}
-							</h5>
-							<span class="product-subtitle text-center">
-								{{ product.subtitle }}
-							</span>
-							<span class="product-subtitle d-block">
-								{{ (product.price /100)|number_format(2, ',') }}
-								€
-							</span>
+					<div class="container-fluid">
+						<div class="row mt-5">
+							{% for product in products%}
+								<div class="col-md-3">
+									<div class="product-item text-center mt-5 shadow-xl">
+										<a href="{{ path('product_show', {id: product.id}) }}">
 
+											<img src="/images/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid" height="50%" width="50%">
+										</a>
+
+										<h5 class="text-center text-capitalize">
+											{{ product.name }}
+										</h5>
+										<span class="product-subtitle text-center">
+											{{ product.subtitle }}
+										</span>
+										<span class="product-subtitle d-block">
+											{{ (product.price /100)|number_format(2, ',') }}
+											€
+										</span>
+									</div>
+								</div>
+							{% endfor %}
 						</div>
-
 					</div>
+				</div>
 
 
-				{% endfor %}
 			</div>
+
 		</div>
+
 
 	{% endblock %}
