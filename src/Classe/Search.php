@@ -18,3 +18,5 @@ class Search
      */
     public $categorys = [];
 }
+
+

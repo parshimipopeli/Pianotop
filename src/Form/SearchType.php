@@ -32,8 +32,9 @@ public function buildForm(FormBuilderInterface $builder, array $options)
                 'multiple' => true,
                 'expanded' => true
             ])
+            
             ->add('submit', SubmitType::class, [
-                'label' => 'Filter',
+                'label' => 'Afficher les résultats',
                 'attr' => [
                     'class' => 'btn-block btn btn-info'
                 ]
